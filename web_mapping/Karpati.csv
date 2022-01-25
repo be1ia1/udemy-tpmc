@@ -1,6 +1,6 @@
-Name,Latitude,Longitude
-Howerla,48.09,24.30
-Brebeneskul,48.05,24.34
-Pip Ivan,48.02,24.37
-Petros,48.10,24.25
-Hutin Tomnatik,48.06,24.25
+Name,Latitude,Longitude,Height
+Howerla,48.09,24.30,2061
+Brebeneskul,48.05,24.34,2035
+Pip Ivan,48.02,24.37,2020.8
+Petros,48.10,24.25,2020.5
+Hutin Tomnatik,48.06,24.25,2016
