@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.2.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="5cf09b47-8520-4de1-b454-284650c4950c" data-root-id="1330"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="1495">
+          {"0a260122-05aa-47de-b7f9-22f094e0c330":{"defs":[],"roots":{"references":[{"attributes":{},"id":"1333","type":"DataRange1d"},{"attributes":{"axis_label":"Pressure (hPa)","coordinates":null,"formatter":{"id":"1394"},"group":null,"major_label_policy":{"id":"1395"},"minor_tick_line_color":null,"ticker":{"id":"1344"}},"id":"1343","type":"LinearAxis"},{"attributes":{"tools":[{"id":"1347"}]},"id":"1348","type":"Toolbar"},{"attributes":{"coordinates":null,"group":null,"text":"Temperature and Air Pressure","text_color":"Gray","text_font":"times"},"id":"1350","type":"Title"},{"attributes":{"below":[{"id":"1339"}],"center":[{"id":"1342"},{"id":"1346"}],"height":400,"left":[{"id":"1343"}],"title":{"id":"1350"},"toolbar":{"id":"1348"},"width":500,"x_range":{"id":"1331"},"x_scale":{"id":"1335"},"y_range":{"id":"1333"},"y_scale":{"id":"1337"}},"id":"1330","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1398","type":"AllLabels"},{"attributes":{},"id":"1340","type":"BasicTicker"},{"attributes":{"axis":{"id":"1339"},"coordinates":null,"group":null,"ticker":null},"id":"1342","type":"Grid"},{"attributes":{},"id":"1331","type":"DataRange1d"},{"attributes":{},"id":"1335","type":"LinearScale"},{"attributes":{},"id":"1337","type":"LinearScale"},{"attributes":{"axis":{"id":"1343"},"coordinates":null,"dimension":1,"group":null,"ticker":null},"id":"1346","type":"Grid"},{"attributes":{},"id":"1394","type":"BasicTickFormatter"},{"attributes":{},"id":"1395","type":"AllLabels"},{"attributes":{},"id":"1344","type":"BasicTicker"},{"attributes":{},"id":"1347","type":"PanTool"},{"attributes":{},"id":"1397","type":"BasicTickFormatter"},{"attributes":{"axis_label":"Temperature (C)","coordinates":null,"formatter":{"id":"1397"},"group":null,"major_label_policy":{"id":"1398"},"minor_tick_line_color":null,"ticker":{"id":"1340"}},"id":"1339","type":"LinearAxis"}],"root_ids":["1330"]},"title":"Bokeh Application","version":"2.4.2"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            const fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  const docs_json = document.getElementById('1495').textContent;
+                  const render_items = [{"docid":"0a260122-05aa-47de-b7f9-22f094e0c330","root_ids":["1330"],"roots":{"1330":"5cf09b47-8520-4de1-b454-284650c4950c"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    let attempts = 0;
+                    const timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
