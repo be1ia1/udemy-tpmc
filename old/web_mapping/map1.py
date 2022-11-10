@@ -2,7 +2,7 @@ import folium
 import pandas
 map1 = folium.Map(location=[50,30], zoom_start=6, tiles='Stamen Terrain')
 fgm = folium.FeatureGroup(name='Mountains')
-df = pandas.read_csv('Karpati.csv')
+df = pandas.read_csv('web_mapping/Karpati.csv')
 
 html = """
 Volcano name:<br>
@@ -23,8 +23,8 @@ for row in df.index:
                                                    #fill=True, fill_color='orange',
                                                     #fill_opacity=0.7))
     # icon=folium.Icon(color=mcolor)
-fgp = folium.FeatureGroup(name='Popilation')
-fgp.add_child(folium.GeoJson(data=open('world.json', encoding='utf-8-sig').read(),
+fgp = folium.FeatureGroup(name='Population')
+fgp.add_child(folium.GeoJson(data=open('web_mapping/world.json', encoding='utf-8-sig').read(),
  style_function=lambda x: {'fillColor':'green' if x['properties']['POP2005'] < 10000000
   else 'orange' if 10000000 <= x['properties']['POP2005'] < 20000000 
   else 'red'}))
