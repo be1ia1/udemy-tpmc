@@ -1,15 +1,4 @@
-import pathlib
-todos_file = pathlib.PureWindowsPath('files/todos.txt')
-print(todos_file)
-
-def get_todos(file):
-    with open(file) as fo:
-        return fo.readlines()
-
-def write_todos(file, todos_list):
-    with open(file, 'w') as fo:
-        fo.writelines(todos_list)
-
+from modules.functions import get_todos, write_todos
 
 while True:
     uaction = input('Type add, show, complete, edit or exit: ').strip()
@@ -17,32 +6,32 @@ while True:
         break
 
     elif uaction.startswith('show') or uaction.startswith('display'):
-        for i,todo in enumerate(get_todos(todos_file), start=1):
+        for i,todo in enumerate(get_todos(), start=1):
             print(f'{i} - {todo}', end='')
 
     elif uaction.startswith('add'):
-        todos = get_todos(todos_file)
-        todo = uaction[4:] + '\n'
+        todos = get_todos()
+        todo = uaction[4:].capitalize() + '\n'
         todos.append(todo)
-        write_todos(todos_file, todos)
+        write_todos(todos)
 
     elif uaction.startswith('edit'):
         try:
-            todos = get_todos(todos_file)
+            todos = get_todos()
             num_todo = int(uaction[5:]) - 1
-            todos[num_todo] = input('Enter new todo: ') + '\n'
-            write_todos(todos_file, todos)
+            todos[num_todo] = input('Enter new todo: ').capitalize() + '\n'
+            write_todos(todos)
         except ValueError:
             print('Enter number, not string')
             continue
 
     elif uaction.startswith('complete'):
         try:
-            todos = get_todos(todos_file)
+            todos = get_todos()
             num_todo = int(uaction[9:]) - 1
             poped_todo = todos[num_todo].strip('\n')
             todos.pop(num_todo)
-            write_todos(todos_file, todos)
+            write_todos(todos)
             print(f'Todo "{poped_todo}" was removed from the list..')
         except IndexError:
             print('Out of list..')

@@ -1,8 +1,8 @@
 Play A Game
-add new django member
+Add new django member
 Listen Music
 Learn Python
-Write
+Write function module
 Fix the bug
 Follow me
 Add new member
