@@ -1,8 +1,10 @@
-def get_todos(file='files//todos.txt' ):
+FILEPATH = 'files//todos.txt'
+
+def get_todos(file=FILEPATH):
     with open(file) as fo:
         return fo.readlines()
 
-def write_todos(todos_list, file='files//todos.txt'):
+def write_todos(todos_list, file=FILEPATH):
     with open(file, 'w') as fo:
         fo.writelines(todos_list)
 

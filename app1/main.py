@@ -1,5 +1,10 @@
 from modules.functions import get_todos, write_todos
 
+from datetime import datetime
+
+now = datetime.now() 
+print(f'it is {now.strftime("%B %d, %Y %H:%M:%S")}')
+
 while True:
     uaction = input('Type add, show, complete, edit or exit: ').strip()
     if uaction.startswith('exit') or uaction.startswith('quit'):
