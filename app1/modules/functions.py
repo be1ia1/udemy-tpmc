@@ -1,6 +1,7 @@
 FILEPATH = 'files//todos.txt'
 
 def get_todos(file=FILEPATH):
+    '''Get todos from FILEPATH'''
     with open(file) as fo:
         return fo.readlines()
 
