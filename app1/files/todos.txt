@@ -1,8 +1,9 @@
 Play A Game
 Add new django member
-Listen Music
+Listen Pop Music
 Learn Python
 Write function module
-Fix the bug
-Follow me
-Add new member
+Fix the bug in GUI
+Kill Bill
+Fix bug
+Write a letter

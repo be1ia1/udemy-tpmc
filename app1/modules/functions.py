@@ -1,4 +1,9 @@
-FILEPATH = 'files//todos.txt'
+import os
+
+FILEPATH = 'files/todos.txt'
+
+if os.name == 'nt':
+    FILEPATH = 'files//todos.txt'
 
 def get_todos(file=FILEPATH):
     '''Get todos from FILEPATH'''
