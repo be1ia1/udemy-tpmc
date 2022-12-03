@@ -1,6 +1,6 @@
 Play A Game
 Add new django member
-Listen Pop Music
+Listen Country Music
 Learn Python
 Write function module
 Fix the bug in GUI

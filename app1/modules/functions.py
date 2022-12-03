@@ -1,9 +1,6 @@
-import os
+import pathlib
 
-FILEPATH = 'files/todos.txt'
-
-if os.name == 'nt':
-    FILEPATH = 'files//todos.txt'
+FILEPATH = pathlib.Path('files', 'todos.txt')
 
 def get_todos(file=FILEPATH):
     '''Get todos from FILEPATH'''
@@ -15,4 +12,4 @@ def write_todos(todos_list, file=FILEPATH):
         fo.writelines(todos_list)
 
 if __name__ == '__main__':
-    pass
+    print(FILEPATH)
