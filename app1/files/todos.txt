@@ -1,9 +1,7 @@
 Play A Game
-Add new django member
+Add new Django member
 Listen Country Music
 Learn Python
 Write function module
 Fix the bug in GUI
-Kill Bill
-Fix bug
-Write a letter
+Test image buttons
