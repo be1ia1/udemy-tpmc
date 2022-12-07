@@ -1,4 +1,4 @@
-from modules.functions import get_todos, write_todos
+from functions import get_todos, write_todos
 
 from datetime import datetime
 
