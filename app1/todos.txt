@@ -4,4 +4,3 @@ Listen Country Music
 Learn Python
 Write function module
 Fix the bug in GUI
-Test image buttons
