@@ -26,7 +26,6 @@ window = sg.Window('My To-Do App',
 
 while True:
     event, values = window.read(timeout=200)
-    print(event, values)
     window['clock'].update(datetime.now().strftime("%B %d, %Y %H:%M:%S"))
     match event:
         case 'Add':
