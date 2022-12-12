@@ -22,5 +22,11 @@ st.text_input(label='todo', label_visibility='hidden',
               on_change=update_new_todo(),
               key='new_todo')
 
-for item in todos:
-    st.checkbox(item)
+for index, todo in enumerate(todos):
+    checkbox = st.checkbox(todo, key=todo)
+ 
+    if checkbox:
+        todos.pop(index)
+        functions.write_todos(todos)
+        del st.session_state[todo]
+        st.experimental_rerun()

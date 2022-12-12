@@ -1,8 +1,4 @@
 Play A Game
-Add new Django member
-Listen Country Music
 Learn Python
-Write function module
-Fix the bug in GUI
-Throw a trash
-Say Hello
+More, more, more
+We need more tasks
