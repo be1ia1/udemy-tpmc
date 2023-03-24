@@ -21,5 +21,6 @@ st.subheader(f'{x_select} and {y_select}')
 # fake data
 # x, y= [1, 4, 7], [2, 8, 14]
 x, y = df[x_select.lower()], df[y_select.lower()]
-figure = px.scatter(x = x, y = y)
+figure = px.scatter(x = x, y = y,
+                    labels={'x': x_select, 'y': y_select})
 st.plotly_chart(figure_or_data=figure)
