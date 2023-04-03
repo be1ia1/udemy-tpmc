@@ -1,9 +1,10 @@
+import os
 import smtplib
 from email.message import EmailMessage
 import imghdr
 
-SENDER = 'belial.ahula@gmail.com'
-PASSWORD = 'tumssajhetkvtsjw'
+SENDER = 'belial.agula@gmail.com'
+PASSWORD = os.getenv('email_password')
 
 def send_email(image):
     print('start mail process')

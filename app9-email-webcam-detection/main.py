@@ -6,7 +6,7 @@ from threading import Thread
 from emailing import send_email
 
 
-video = cv2.VideoCapture(2)
+video = cv2.VideoCapture(0)
 time.sleep(1)
 first_frame = None
 status_list = []
@@ -14,13 +14,9 @@ count = 1
 
 def clean_images():
     print('start clean process')
-    images = glob.glob('images/*.png')
-    for image in images:
-        print(image)
+    for image in glob.glob('images/*.png'):
         os.remove(image)
     print('end clean process')
-
-# clean_images()
 
 
 while True:
@@ -68,3 +64,5 @@ while True:
 video.release()
 
 clean_thread.start()
+
+time.sleep(1)
