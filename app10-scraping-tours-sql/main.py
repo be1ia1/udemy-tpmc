@@ -2,7 +2,11 @@ import requests
 import selectorlib
 import smtplib, ssl
 import os
+import time
+import sqlite3
 
+# "INSERT INTO events VALUES ('Tigers', 'Tiger City', '2088.10.14')"
+# SELECT * FROM events WHERE date="2088.10.15"
 
 URL = 'https://programmer100.pythonanywhere.com/tours/'
 
@@ -27,6 +31,16 @@ def scrape(url):
     value = extractor.extract(content)['tours']
     return value
 
+def get_event_sql(cursor):
+    cursor.execute("SELECT * FROM events")
+    events = cursor.fetchall()
+    return events
+
+def store_event_sql(cursor, extracted):
+    events = cursor.executemany("INSERT INTO events VALUES (?,?,?)", extracted)
+    connection.commit()
+    
+
 def store_event(extracted):
     with open('events.txt', 'a') as fo:
         fo.write(extracted + '\n')
@@ -37,9 +51,19 @@ def get_event():
     return events
 
 if __name__ == '__main__':
-    extracted = scrape(URL)
-    print(extracted)
-    if extracted != 'No upcoming tours':
-        if not extracted in get_event():
-            store_event(extracted)
-            send_email(message='Hey, new event was found!')
+    connection = sqlite3.connect('data.db')
+    cursor = connection.cursor()
+    count = 10
+    while count >= 0:
+        print(f'Start {count} step..')
+        extracted = scrape(URL)
+        if extracted != 'No upcoming tours':
+            extracted = tuple(i.strip() for i in extracted.split(','))
+            if not extracted in get_event_sql(cursor):
+                print(f'Add {extracted} in database..')
+                store_event_sql(cursor, [extracted])
+                # send_email(message='Hey, new event was found!')
+            else:
+                print(f'{extracted} already presented in database..')
+        count -= 1
+        time.sleep(5)
