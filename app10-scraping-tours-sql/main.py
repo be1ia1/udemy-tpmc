@@ -53,8 +53,8 @@ def get_event():
 if __name__ == '__main__':
     connection = sqlite3.connect('data.db')
     cursor = connection.cursor()
-    count = 10
-    while count >= 0:
+    count = 1
+    while count <= 10:
         print(f'Start {count} step..')
         extracted = scrape(URL)
         if extracted != 'No upcoming tours':
@@ -65,5 +65,5 @@ if __name__ == '__main__':
                 # send_email(message='Hey, new event was found!')
             else:
                 print(f'{extracted} already presented in database..')
-        count -= 1
+        count += 1
         time.sleep(5)
