@@ -1,12 +1,13 @@
-from PyQt6.QtWidgets import QApplication, QVBoxLayout, QLabel, \
-                            QWidget, QGridLayout, QLineEdit, \
-                            QPushButton
+from PyQt6.QtWidgets import QApplication, QLabel, \
+                            QWidget, QGridLayout, \
+                            QLineEdit, QPushButton
 import sys
 from datetime import datetime
 
 class AgeCalculator(QWidget):
     def __init__(self):
         super().__init__()
+        self.setWindowTitle('Age Calculator')
         grid = QGridLayout()
 
         name_label = QLabel("Name:")
