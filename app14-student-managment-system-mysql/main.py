@@ -1,22 +1,31 @@
 from PyQt6.QtWidgets import QApplication, QLabel, \
-                            QWidget, QGridLayout, \
+                            QGridLayout, QMessageBox,\
                             QLineEdit, QPushButton, \
                             QMainWindow, QTableWidget, \
                             QTableWidgetItem, QDialog, \
                             QVBoxLayout, QComboBox, \
-                            QToolBar, QStatusBar, \
-                            QMessageBox
+                            QToolBar, QStatusBar
+                            
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
 import sys
-import sqlite3
+import mysql.connector
 
 class DatabaseConnection:
-    def __init__(self, database_file = 'database.db'):
-        self.database_file = database_file
+    def __init__(self, host='localhost', 
+                       user='root', 
+                       password='pythoncourse', 
+                       database='school'):
+        self.host = host
+        self.user = user
+        self.password = password
+        self.database = database
 
-    def connect_sqlite3(self):
-        connection = sqlite3.connect(self.database_file)
+    def connect(self):
+        connection = mysql.connector.connect(host=self.host, 
+                                             user=self.user, 
+                                             password=self.password,
+                                             database=self.database)
         return connection
 
 class MainWindow(QMainWindow):
@@ -81,8 +90,10 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
     def load_data(self):
-        connection = DatabaseConnection().connect_sqlite3()
-        result = connection.execute('SELECT * FROM students')
+        connection = DatabaseConnection().connect()
+        cursor = connection.cursor()
+        cursor.execute('SELECT * FROM students')
+        result = cursor.fetchall()
         self.table.setRowCount(0)
         for row_number, row_data in enumerate(result):
             self.table.insertRow(row_number)
@@ -138,9 +149,9 @@ class EditDialog(QDialog):
         self.setLayout(layout)
 
     def update_student(self):
-        connection = DatabaseConnection().connect_sqlite3()
+        connection = DatabaseConnection().connect()
         cursor = connection.cursor()
-        cursor.execute('UPDATE students SET name = ?, course = ?, mobile = ? WHERE id = ?',
+        cursor.execute('UPDATE students SET name = %s, course = %s, mobile = %s WHERE id = %s',
                       (self.student_name.text(),
                        self.course_name.itemText(self.course_name.currentIndex()),
                        self.mobile.text(),
@@ -177,9 +188,9 @@ class DeleteDialog(QDialog):
         index = student_app.table.currentRow()
         student_id = student_app.table.item(index, 0).text()
         
-        connection = DatabaseConnection().connect_sqlite3()
+        connection = DatabaseConnection().connect()
         cursor = connection.cursor()
-        cursor.execute('DELETE from students WHERE id = ?', (student_id, ))
+        cursor.execute('DELETE from students WHERE id = %s', (student_id, ))
         connection.commit()
         cursor.close()
         connection.close()
@@ -217,9 +228,9 @@ class InsertDialog(QDialog):
         name = self.student_name.text()
         course = self.course_name.itemText(self.course_name.currentIndex())
         mobile = self.mobile.text()
-        connection = DatabaseConnection().connect_sqlite3()
+        connection = DatabaseConnection().connect()
         cursor = connection.cursor()
-        cursor.execute('INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)',
+        cursor.execute('INSERT INTO students (name, course, mobile) VALUES (%s, %s, %s)',
         (name, course, mobile))
         connection.commit()
         cursor.close()
@@ -244,9 +255,10 @@ class SearchDialog(QDialog):
     
     def search_student(self):
         name = self.student_name.text()
-        # connection = sqlite3.connect('database.db')
+        # connection = DatabaseConnection().connect()
         # cursor = connection.cursor()
-        # result = cursor.execute("SELECT * FROM students WHERE name = ?", (name,))
+        # cursor.execute("SELECT * FROM students WHERE name = %s", (name,))
+        # result = cursor.fetchall()
         # rows = list(result)
         # cursor.close()
         # connection.close()
